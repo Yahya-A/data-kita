@@ -14,7 +14,7 @@ class DrivethruController extends Controller
 
     public function search(Request $request)
     {
-        $result = Vehicle::with('dimensi')->where('nouji', $request->get('no-uji'))->first();
+        $result = Vehicle::with('dimensi', 'jenis')->where('nouji', $request->get('no-uji'))->first();
 
         return view('drivethru.loket')->with('result', $result);
     }

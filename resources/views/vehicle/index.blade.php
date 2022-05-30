@@ -24,7 +24,9 @@
                             <th>Pemilik</th>
                             <th>Alamat</th>
                             <th>Merk</th>
-                            <th>Aksi</th>
+                            @if (auth()->user()->role == 'penguji')
+                                <th>Aksi</th>
+                            @endif
                         </tr>
                     </thead>
                     <tfoot>
@@ -34,7 +36,9 @@
                             <th>Pemilik</th>
                             <th>Alamat</th>
                             <th>Merk</th>
-                            <th>Aksi</th>
+                            @if (auth()->user()->role == 'penguji')
+                                <th>Aksi</th>
+                            @endif
                         </tr>
                     </tfoot>
                     <tbody>
@@ -45,10 +49,12 @@
                                 <td>{{$vehicle->pemilik}}</td>
                                 <td>{{$vehicle->alamat}}</td>
                                 <td>{{$vehicle->merk}}</td>
-                                <td class="text-center">
-                                    <a href="/data-induk/kendaraan/edit/{{base64_encode($vehicle->id_kendaraan)}}" class="btn btn-primary">Ubah</a>
-                                    <a href="/data-induk/kendaraan/delete/{{base64_encode($vehicle->id_kendaraan)}}" class="btn btn-danger">Hapus</a>
-                                </td>
+                                @if (auth()->user()->role == 'penguji')
+                                    <td class="text-center">
+                                        <a href="/data-induk/kendaraan/edit/{{base64_encode($vehicle->id_kendaraan)}}" class="btn btn-primary">Ubah</a>
+                                        <a href="/data-induk/kendaraan/delete/{{base64_encode($vehicle->id_kendaraan)}}" class="btn btn-danger">Hapus</a>
+                                    </td>
+                                @endif
                             </tr>
                         @endforeach
                     </tbody>

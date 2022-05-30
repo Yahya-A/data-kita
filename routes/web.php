@@ -4,6 +4,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DrivethruController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\AdditionalDataController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TicketController;
 use App\Http\Controllers\VehicleTypeController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,8 +20,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/home', [DashboardController::class, 'home']);
-Route::group(['prefix' => 'data-induk/kendaraan'], function() {
+Route::middleware('auth')->get('/', function() {
+    return redirect('/home');
+});
+
+Route::middleware('auth')->get('/home', [DashboardController::class, 'home']);
+Route::group(['prefix' => 'auth'], function() {
+    Route::get('/', [AuthController::class, 'index'])->name('auth');
+    Route::get('logout', [AuthController::class, 'logout']);
+    Route::post('login', [AuthController::class, 'login']);
+});
+Route::group(['prefix' => 'data-induk/kendaraan', 'middleware' => 'auth'], function() {
     Route::get('/', [VehicleController::class, 'index']);
     Route::get('tambah', [VehicleController::class, 'add']);
     Route::post('proses-tambah', [VehicleController::class, 'store']);
@@ -27,7 +38,7 @@ Route::group(['prefix' => 'data-induk/kendaraan'], function() {
     Route::get('edit/{id}', [VehicleController::class, 'edit']);
     Route::get('delete/{id}', [VehicleController::class, 'destroy']);
 });
-Route::group(['prefix' => 'data-tambahan/jenis-kendaraan'], function() {
+Route::group(['prefix' => 'data-tambahan/jenis-kendaraan', 'middleware' => 'auth'], function() {
     Route::get('/', [VehicleTypeController::class, 'index']);
     Route::get('tambah', [VehicleTypeController::class, 'add']);
     Route::post('proses-tambah', [VehicleTypeController::class, 'store']);
@@ -35,7 +46,13 @@ Route::group(['prefix' => 'data-tambahan/jenis-kendaraan'], function() {
     Route::get('edit/{id}', [VehicleTypeController::class, 'edit']);
     Route::get('delete/{id}', [VehicleTypeController::class, 'destroy']);
 });
-Route::group(['prefix' => 'drivethru'], function(){
+Route::group(['prefix' => 'tilang', 'middleware' => 'auth'], function() {
+    Route::get('/', [TicketController::class, 'index']);
+    Route::get('search', [TicketController::class, 'search']);
+    Route::get('tambah', [TicketController::class, 'add']);
+    Route::post('upload-bukti', [TicketController::class, 'store']);
+});
+Route::group(['prefix' => 'drivethru', 'middleware' => 'auth'], function(){
     Route::get('/', [DrivethruController::class,'index']);
-    Route::get('/search', [DrivethruController::class,'search']);
+    Route::get('search', [DrivethruController::class,'search']);
 });

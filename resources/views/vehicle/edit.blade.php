@@ -26,7 +26,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <input type="text" class="form-control" name="nouji"
-                                    placeholder="Nomor uji" value="{{$vehicle->nouji}}">
+                                    placeholder="Nomor uji" disabled value="{{$vehicle->nouji}}">
                             </div>
                         </div>
                         <div class="form-group row">

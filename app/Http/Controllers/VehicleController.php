@@ -22,8 +22,10 @@ class VehicleController extends Controller
 
     public function add()
     {
+        $last_id = Vehicle::all()->last()->id_kendaraan + 1;
+        $nouji = 'JKT'.$last_id. rand(100000, 999999);
         $types = VehicleType::all();
-        return view('vehicle.add')->with('types', $types);
+        return view('vehicle.add')->with('types', $types)->with('nouji', $nouji);
     }
 
     public function edit($id)

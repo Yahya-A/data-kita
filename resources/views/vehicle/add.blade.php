@@ -3,9 +3,6 @@
 @section('content')
 
     <div class="container-fluid">
-        @if ($errors->hasBag('error_data_kendaraan'))
-            {{$errors->getBag('error_data_kendaraan')}}
-        @endif
         <form action="/data-induk/kendaraan/proses-tambah" method="POST">
             @csrf
             <div class="card shadow mb-4">
@@ -20,21 +17,21 @@
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <input type="text" class="form-control" name="nopol"
-                                    placeholder="Nomor polisi">
+                                    placeholder="Nomor polisi" required>
                             </div>
                             <div class="col-sm-6">
                                 <input type="text" class="form-control" name="nouji"
-                                    placeholder="Nomor uji">
+                                    placeholder="Nomor uji" value="{{$nouji}}" disabled required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-12 mb-3 mb-sm-0">
-                                <input type="text" class="form-control"
-                                    name="pemilik" placeholder="Pemilik">
+                                <input type="text" class="form-control border "
+                                    name="pemilik" placeholder="Pemilik" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" name="alamat" cols="30" rows="5" placeholder="Alamat pemilik"></textarea>
+                            <textarea class="form-control" name="alamat" cols="30" rows="5" placeholder="Alamat pemilik" required></textarea>
                         </div>
                     </div>
                 </div>
@@ -51,7 +48,7 @@
                         <h6 class="m-0 mb-3 font-weight-bold text-primary">Detail Kendaraan</h6>
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                <select class="form-control" name="id_jenis" id="">
+                                <select class="form-control" name="id_jenis" id="" required>
                                     <option value="">Pilih jenis kendaraan</option>
                                     @foreach ( $types as $type )
                                         <option value="{{$type->id_jenis}}">{{$type->nama}}</option>
@@ -60,40 +57,40 @@
                             </div>
                             <div class="col-sm-6">
                                 <input type="text" class="form-control"
-                                    name="merk" placeholder="Merk">
+                                    name="merk" placeholder="Merk" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-4 mb-3 mb-sm-0">
                                 <input type="year" min="1900" class="form-control"
-                                    name="tahun_buat" placeholder="Tahun buat">
+                                    name="tahun_buat" placeholder="Tahun buat" required>
                             </div>
                             <div class="col-sm-4">
                                 <input type="text" class="form-control"
-                                    name="silinder" placeholder="Silinder">
+                                    name="silinder" placeholder="Silinder" required>
                             </div>
                             <div class="col-sm-4">
                                 <input type="text" class="form-control"
-                                    name="no_tipe" placeholder="Tipe">
+                                    name="no_tipe" placeholder="Tipe" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-4 mb-3 mb-sm-0">
                                 <input type="text" class="form-control"
-                                    name="warna" placeholder="Warna kendaraan">
+                                    name="warna" placeholder="Warna kendaraan" required>
                             </div>
                             <div class="col-sm-4">
                                 <input type="text" class="form-control"
-                                    name="chasis" placeholder="Chasis">
+                                    name="chasis" placeholder="Chasis" required>
                             </div>
                             <div class="col-sm-4">
                                 <input type="text" class="form-control"
-                                    name="mesin" placeholder="Mesin">
+                                    name="mesin" placeholder="Mesin" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                <select class="form-control" name="warna_plat" id="">
+                                <select class="form-control" name="warna_plat" id="" required>
                                     <option value="">Pilih warna plat</option>
                                     <option value="hitam">Putih-Hitam</option>
                                     <option value="kuning">Kuning-Hitam</option>
@@ -102,7 +99,7 @@
                                 </select>
                             </div>
                             <div class="col-sm-6">
-                                <select class="form-control" name="bahan_bakar" id="">
+                                <select class="form-control" name="bahan_bakar" id="" required>
                                     <option value="">Pilih bahan bakar</option>
                                     <option value="solar">Solar</option>
                                     <option value="bensin">Bensin</option>
@@ -115,12 +112,12 @@
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label for="">Tanggal uji terakhir</label>
                                 <input type="date" class="form-control"
-                                name="tanggal_uji_akhir" placeholder="Tanggal uji terakhir">
+                                name="tanggal_uji_akhir" placeholder="Tanggal uji terakhir" required>
                             </div>
                             <div class="col-sm-6">
                                 <label for="">Lokasi uji terakhir</label>
                                 <input type="text" class="form-control"
-                                    name="lokasi_uji_akhir" placeholder="Lokasi uji">
+                                    name="lokasi_uji_akhir" placeholder="Lokasi uji" required>
                             </div>
                         </div>
                     </div>

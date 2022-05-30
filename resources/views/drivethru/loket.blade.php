@@ -21,8 +21,6 @@
                 </form>
             </div>
         </div>
-
-        {{isset($result) ? $result : ''}}
         @if (isset($result))
             <div class="row">
                 <div class="col-md-6">
@@ -31,9 +29,58 @@
                             <h6 class="m-0 font-weight-bold text-primary">Data Kendaraan</h6>
                         </div>
                         <div class="card-body">
-                            The styling for this basic card example is created by using default Bootstrap
-                            utility classes. By using utility classes, the style of the card component can be
-                            easily modified with no need for any custom CSS!
+                            <table class="table">
+                                <tbody>
+                                  <tr>
+                                    <th scope="row" width="20">NOPOL</th>
+                                    <td>{{$result->nopol}}</td>
+                                    <th scope="row" width="20">MASA UJI AKHIR</th>
+                                    <td>{{$result->masa_akhir_uji}}</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row" width="20">NO UJI</th>
+                                    <td>{{$result->nouji}}</td>
+                                    <th scope="row" width="20">MERK</th>
+                                    <td>{{$result->merk}}</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row" width="20">PEMILIK</th>
+                                    <td>{{$result->pemilik}}</td>
+                                    <th scope="row" width="20">TYPE</th>
+                                    <td>{{$result->no_tipe}}</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row" width="20">ALAMAT</th>
+                                    <td>{{$result->alamat}}</td>
+                                    <th scope="row" width="20">WARNA</th>
+                                    <td>{{$result->warna}}</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row" width="20">LOKASI UJI TERKAHIR</th>
+                                    <td>{{$result->lokasi_uji_akhir}}</td>
+                                    <th scope="row" width="20">CHASIS</th>
+                                    <td>{{$result->chasis}}</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row" width="20">JENIS</th>
+                                    <td>{{$result->jenis->nama}}</td>
+                                    <th scope="row" width="20">MESIN</th>
+                                    <td>{{$result->mesin}}</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row" width="20">SILINDER</th>
+                                    <td>{{$result->silinder}}</td>
+                                    <th scope="row" width="20">WARNA PLAT</th>
+                                    <td class="text-capitalize">{{$result->warna_plat}}</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row" width="20">TAHUN BUAT</th>
+                                    <td>{{$result->tahun_buat}}</td>
+                                    <th scope="row" width="20">BAHAN BAKAR</th>
+                                    <td class="text-capitalize">{{$result->bahan_bakar}}</td>
+                                  </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -43,9 +90,58 @@
                             <h6 class="m-0 font-weight-bold text-primary">Dimensi</h6>
                         </div>
                         <div class="card-body">
-                            The styling for this basic card example is created by using default Bootstrap
-                            utility classes. By using utility classes, the style of the card component can be
-                            easily modified with no need for any custom CSS!
+                            <table class="table">
+                                <tbody>
+                                  <tr>
+                                    <th scope="row" width="20">PANJANG</th>
+                                    <td>{{!is_null($result->dimensi) ? $result->dimensi->panjang : '-'}}</td>
+                                    <th scope="row" width="20">JBB</th>
+                                    <td>{{!is_null($result->dimensi) ? $result->dimensi->jbb : '-'}}</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row" width="20">LEBAR</th>
+                                    <td>{{!is_null($result->dimensi) ? $result->dimensi->lebar : '-'}}</td>
+                                    <th scope="row" width="20">JBI</th>
+                                    <td>{{!is_null($result->dimensi) ? $result->dimensi->jbi : '-'}}</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row" width="20">TINGGI</th>
+                                    <td>{{!is_null($result->dimensi) ? $result->dimensi->tinggi : '-'}}</td>
+                                    <th scope="row" width="20">D.A.O</th>
+                                    <td>{{!is_null($result->dimensi) ? $result->dimensi->dao : '-'}}</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row" width="20">P. BAK</th>
+                                    <td>{{!is_null($result->dimensi) ? $result->dimensi->panjang_bak : '-'}}</td>
+                                    <th scope="row" width="20">D.A.B/D.A.O</th>
+                                    <td>{{!is_null($result->dimensi) ? $result->dimensi->dab_dao : '-'}}</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row" width="20">L. BAK</th>
+                                    <td>{{!is_null($result->dimensi) ? $result->dimensi->lebar_bak : '-'}}</td>
+                                    <th scope="row" width="20">TMPT. DUDUK</th>
+                                    <td>{{!is_null($result->dimensi) ? $result->dimensi->tempat_duduk : '-'}}</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row" width="20">T. BAK</th>
+                                    <td>{{!is_null($result->dimensi) ? $result->dimensi->tinggi_bak : '-'}}</td>
+                                    <th scope="row" width="20">R.O.H/F.O.H</th>
+                                    <td>{{!is_null($result->dimensi) ? $result->dimensi->roh_foh : '-'}}</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row" width="20">BAHAN BAK</th>
+                                    <td>{{!is_null($result->dimensi) ? $result->dimensi->bahan_bak : '-'}}</td>
+                                    <th scope="row" width="20">MST</th>
+                                    <td>{{!is_null($result->dimensi) ? $result->dimensi->mst : '-'}}</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row" width="20">BAN</th>
+                                    <td>{{!is_null($result->dimensi) ? $result->dimensi->ban : '-'}}</td>
+                                    <th scope="row" width="20">KJT</th>
+                                    <td>{{!is_null($result->dimensi) ? $result->dimensi->kjt : '-'}}</td>
+                                  </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

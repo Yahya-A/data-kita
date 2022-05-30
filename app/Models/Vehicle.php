@@ -15,4 +15,9 @@ class Vehicle extends Model
     {
         return $this->hasOne(Dimention::class, 'id_dimensi', 'id_dimensi');
     }
+
+    public function jenis()
+    {
+        return $this->hasOne(VehicleType::class, 'id_jenis', 'id_jenis');
+    }
 }
